@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Laavanya's Portfolio</title>
+<title>Laavanya Srivastava — Creative Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -180,7 +180,7 @@
   }
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--card); }
 
-  /* HERO RIGHT - fixed image placement */
+  /* HERO RIGHT */
   .hero-right {
     background: var(--bg);
     display: flex;
@@ -231,7 +231,6 @@
     line-height: 1.05;
     margin-bottom: 60px;
   }
- 
 
   /* ABOUT */
   #about {
@@ -370,7 +369,7 @@
     text-transform: uppercase;
     margin-bottom: 8px;
   }
-  .work-company { font-size: 0.85rem; color: var(--muted); font-weight: 500; }
+  .work-company { font-size: 0.85rem; color: var(--accent); font-weight: 700; }
   .work-title {
     font-size: 1.15rem;
     font-weight: 700;
@@ -469,7 +468,6 @@
   .video-label { font-size: 0.75rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .video-sub-label { font-size: 0.65rem; color: rgba(255,255,255,0.6); margin-top: 2px; }
 
-  /* Mute button on tile */
   .video-mute-btn {
     position: absolute;
     top: 8px;
@@ -633,7 +631,6 @@
     .work-meta { padding-top: 0; }
     #contact { padding: 80px 24px; }
     footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
-    .video-upload-zone { padding: 36px 24px; }
   }
 </style>
 </head>
@@ -641,7 +638,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">Laavanya<span style="color:var(--accent);font-style:italic;">" "</span>Srivastava</div>
+  <div class="nav-logo">Laavanya Srivastava</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#work">Work</a></li>
@@ -682,16 +679,15 @@
     </div>
     <div>
       <p class="section-eyebrow">About Me</p>
-      <h2 class="section-title">I lead with vision,<br>think like an entrepreneur.</h2>
+      <h2 class="section-title">Stories worth<br>stopping for.</h2>
       <p class="about-body">
-        I'm currently studying a Bachelor of Business at Macquarie University, majoring in Leadership and minoring in Entrepreneurship and Marketing.
+        I'm a marketing creative, content producer, and storyteller based in Sydney. I'm currently studying a Bachelor of Business at Macquarie University, majoring in Leadership and minoring in Entrepreneurship and Marketing.
       </p>
       <p class="about-body">
-        Whether I'm behind a camera, at an event, or building a campaign from scratch, I show up to make something worth remembering.
+        Whether I'm in front of the camera or behind it, writing the script, directing the shoot, filming it myself, running an event, or building a campaign from scratch, I show up to be part of every stage of bringing a story to life. Whatever the role, the goal stays the same: make something people stop, watch, and remember.
       </p>
       <p class="about-detail">
-        📍 Sydney, NSW, Australia &nbsp;·&nbsp; ✉️ <a href="mailto:laavanyassrivastava@gmail.com">laavanyassrivastava@gmail.com</a><br>
-        🌐 English &amp; Hindi
+        ✉️ <a href="mailto:laavanyassrivastava@gmail.com">laavanyassrivastava@gmail.com</a>
       </p>
     </div>
   </div>
@@ -725,6 +721,7 @@
       <div class="skill-list">
         <span class="skill-pill">Social Media Marketing</span>
         <span class="skill-pill">Content Creation</span>
+        <span class="skill-pill">Content Writing</span>
         <span class="skill-pill">Market Research</span>
         <span class="skill-pill">Campaign Planning</span>
         <span class="skill-pill">Event Marketing</span>
@@ -958,7 +955,7 @@
 </footer>
 
 <script>
-  // ── TILE HOVER + MUTE BUTTON ──
+  // TILE HOVER + MUTE BUTTON
   document.querySelectorAll('.video-card').forEach(card => {
     const video = card.querySelector('video');
     const muteBtn = card.querySelector('.video-mute-btn');
@@ -966,23 +963,22 @@
     const iconUnmute = muteBtn && muteBtn.querySelector('.icon-unmute');
     if (!video) return;
 
-    // Start muted, flip icon to show unmuted state (sound-on icon visible = currently playing with sound)
     video.muted = true;
 
     function updateMuteIcon() {
       if (!iconMute || !iconUnmute) return;
       if (video.muted) {
-        iconMute.style.display = 'block';   // crossed speaker = currently muted
+        iconMute.style.display = 'block';
         iconUnmute.style.display = 'none';
       } else {
         iconMute.style.display = 'none';
-        iconUnmute.style.display = 'block';  // speaker = currently unmuted
+        iconUnmute.style.display = 'block';
       }
     }
     updateMuteIcon();
 
     card.addEventListener('mouseenter', () => {
-      video.muted = true; // always start muted on hover, user can unmute
+      video.muted = true;
       updateMuteIcon();
       video.play().catch(() => {});
     });
@@ -996,31 +992,28 @@
 
     if (muteBtn) {
       muteBtn.addEventListener('click', e => {
-        e.stopPropagation(); // don't open lightbox
+        e.stopPropagation();
         video.muted = !video.muted;
         if (!video.muted) {
-          // Try to play with audio if it was blocked
           video.play().catch(() => { video.muted = true; });
         }
         updateMuteIcon();
       });
     }
 
-    // Click card body (not mute btn) opens lightbox
     card.addEventListener('click', e => {
       if (e.target.closest('.video-mute-btn')) return;
       openLightbox(video.src || video.querySelector('source')?.src, video.currentTime);
     });
   });
 
-  // ── LIGHTBOX ──
+  // LIGHTBOX
   const lightbox = document.getElementById('lightbox');
   const lightboxInner = document.getElementById('lightboxInner');
   const lightboxVideo = document.getElementById('lightboxVideo');
   const lightboxClose = document.getElementById('lightboxClose');
   const lightboxMuteBtn = document.getElementById('lightboxMuteBtn');
   const lightboxMuteLabel = document.getElementById('lightboxMuteLabel');
-  const lightboxMuteIcon = lightboxMuteBtn && lightboxMuteBtn.querySelector('svg');
 
   function openLightbox(src, startTime) {
     lightboxVideo.src = src;
@@ -1056,17 +1049,15 @@
     updateLightboxMuteLabel();
   });
 
-  // Close on backdrop click (outside inner box)
   lightbox && lightbox.addEventListener('click', e => {
     if (!lightboxInner.contains(e.target)) closeLightbox();
   });
 
-  // Close on Escape key
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeLightbox();
   });
 
-  // ── SCROLL FADE-IN ──
+  // SCROLL FADE-IN
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
